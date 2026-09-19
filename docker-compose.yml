@@ -1,5 +1,4 @@
 services:
-
   postgres:
     image: postgres:17
     container_name: notifications-db
@@ -21,7 +20,6 @@ services:
       timeout: 5s
       retries: 10
 
-
   api:
     build:
       context: .
@@ -33,7 +31,6 @@ services:
       DB_URL: jdbc:postgresql://postgres:5432/notifications
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
-
       JWT_SECRET: notifications-api-super-secret-key-for-jwt-signing-2026
       JWT_EXPIRATION: 3600000
 
@@ -44,6 +41,20 @@ services:
       postgres:
         condition: service_healthy
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:8080
+
+    container_name: notifications-frontend
+
+    ports:
+      - "5173:80"
+
+    depends_on:
+      - api
 
 volumes:
   postgres_data:
