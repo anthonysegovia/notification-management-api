@@ -15,7 +15,7 @@ class EmailNotificationSenderTest {
             new EmailNotificationSender();
 
     @Test
-    void shouldSendEmailWithValidRecipient() {
+        void shouldValidateEmailWithValidRecipient() {
 
         Notification notification = new Notification(
                 "Welcome",
@@ -26,7 +26,7 @@ class EmailNotificationSenderTest {
         );
 
         assertDoesNotThrow(() ->
-                sender.send(notification)
+                sender.validate(notification)
         );
     }
 
@@ -43,7 +43,7 @@ class EmailNotificationSenderTest {
 
         assertThrows(
                 InvalidNotificationException.class,
-                () -> sender.send(notification)
+                () -> sender.validate(notification)
         );
     }
 }

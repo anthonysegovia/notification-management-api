@@ -46,6 +46,7 @@ public class NotificationService {
         NotificationSender sender =
                 senderFactory.getSender(request.channel());
 
+        sender.validate(notification);
         sender.send(notification);
 
         Notification saved =
@@ -97,6 +98,11 @@ public class NotificationService {
         notification.setContent(request.content());
         notification.setChannel(request.channel());
         notification.setRecipient(request.recipient());
+
+        NotificationSender sender =
+            senderFactory.getSender(request.channel());
+
+        sender.validate(notification);
 
         Notification updated =
                 notificationRepository.save(notification);

@@ -15,7 +15,7 @@ public class PushNotificationSender implements NotificationSender {
     }
 
     @Override
-    public void send(Notification notification) {
+    public void validate(Notification notification) {
 
         String deviceToken = notification.getRecipient();
 
@@ -27,6 +27,12 @@ public class PushNotificationSender implements NotificationSender {
                     "Invalid device token"
             );
         }
+    }
+
+    @Override
+    public void send(Notification notification) {
+
+        String deviceToken = notification.getRecipient();
 
         String payload = """
                 {

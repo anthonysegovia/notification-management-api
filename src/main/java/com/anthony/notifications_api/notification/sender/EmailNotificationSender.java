@@ -15,7 +15,7 @@ public class EmailNotificationSender implements NotificationSender {
     }
 
     @Override
-    public void send(Notification notification) {
+    public void validate(Notification notification) {
 
         String recipient = notification.getRecipient();
 
@@ -26,6 +26,12 @@ public class EmailNotificationSender implements NotificationSender {
                     "Invalid email recipient"
             );
         }
+    }
+
+    @Override
+    public void send(Notification notification) {
+
+        String recipient = notification.getRecipient();
 
         String template = """
                 Subject: %s

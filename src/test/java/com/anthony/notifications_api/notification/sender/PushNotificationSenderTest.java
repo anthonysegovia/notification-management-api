@@ -15,7 +15,7 @@ class PushNotificationSenderTest {
             new PushNotificationSender();
 
     @Test
-    void shouldSendPushWithValidDeviceToken() {
+        void shouldValidatePushWithValidDeviceToken() {
 
         Notification notification = new Notification(
                 "New message",
@@ -26,7 +26,7 @@ class PushNotificationSenderTest {
         );
 
         assertDoesNotThrow(() ->
-                sender.send(notification)
+                sender.validate(notification)
         );
     }
 
@@ -43,7 +43,7 @@ class PushNotificationSenderTest {
 
         assertThrows(
                 InvalidNotificationException.class,
-                () -> sender.send(notification)
+                () -> sender.validate(notification)
         );
     }
 }

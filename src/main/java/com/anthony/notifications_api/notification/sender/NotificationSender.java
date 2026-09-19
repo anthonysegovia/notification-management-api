@@ -7,5 +7,7 @@ public interface NotificationSender {
 
     NotificationChannel getChannel();
 
+    void validate(Notification notification);
+
     void send(Notification notification);
 }

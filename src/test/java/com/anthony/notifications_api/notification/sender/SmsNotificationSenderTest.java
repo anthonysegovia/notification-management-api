@@ -15,7 +15,7 @@ class SmsNotificationSenderTest {
             new SmsNotificationSender();
 
     @Test
-    void shouldSendSmsWhenContentHas160CharactersOrLess() {
+        void shouldValidateSmsWhenContentHas160CharactersOrLess() {
 
         String content = "A".repeat(160);
 
@@ -28,7 +28,7 @@ class SmsNotificationSenderTest {
         );
 
         assertDoesNotThrow(() ->
-                sender.send(notification)
+                sender.validate(notification)
         );
     }
 
@@ -47,7 +47,7 @@ class SmsNotificationSenderTest {
 
         assertThrows(
                 InvalidNotificationException.class,
-                () -> sender.send(notification)
+                () -> sender.validate(notification)
         );
     }
 }

@@ -17,7 +17,7 @@ public class SmsNotificationSender implements NotificationSender {
     }
 
     @Override
-    public void send(Notification notification) {
+        public void validate(Notification notification) {
 
         String phoneNumber = notification.getRecipient();
 
@@ -34,6 +34,12 @@ public class SmsNotificationSender implements NotificationSender {
                     "SMS content cannot exceed 160 characters"
             );
         }
+        }
+
+        @Override
+        public void send(Notification notification) {
+
+                String phoneNumber = notification.getRecipient();
 
         System.out.println(
                 "[SMS] Number: " + phoneNumber
